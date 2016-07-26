@@ -1,26 +1,12 @@
 class rvm::packages::debian {
-
-  case $::operatingsystemrelease {
-    'wheezy/sid', /7/: {
-      $libreadline_pkg = 'libreadline-gplv2-dev'
-    }
-    default: {
-      $libreadline_pkg = 'libreadline5-dev'
+  $packages = ['build-essential', 'curl', 'gnupg', 'bash', 'gawk', 'sed',
+    'grep', 'gzip', 'bzip2', 'zlib1g-dev', 'libssl-dev',
+    'libreadline-gplv2-dev']
+  $packages.each |$package| {
+    if ! defined(Package[$package]) {
+      package { $package:
+        ensure => installed,
+      }
     }
   }
-
-  if ! defined(Package['build-essential']) { package { 'build-essential': ensure => installed } }
-  if ! defined(Package['curl'])            { package { 'curl':            ensure => installed } }
-  if ! defined(Package['gnupg'])           { package { 'gnupg':           ensure => installed } }
-  if ! defined(Package['bash'])            { package { 'bash':            ensure => installed } }
-  if ! defined(Package['gawk'])            { package { 'gawk':            ensure => installed } }
-  if ! defined(Package['sed'])             { package { 'sed':             ensure => installed } }
-  if ! defined(Package['grep'])            { package { 'grep':            ensure => installed } }
-  if ! defined(Package['gzip'])            { package { 'gzip':            ensure => installed } }
-  if ! defined(Package['bzip2'])           { package { 'bzip2':           ensure => installed } }
-  if ! defined(Package['zlib1g-dev'])      { package { 'zlib1g-dev':      ensure => installed } }
-  if ! defined(Package['libssl-dev'])      { package { 'libssl-dev':      ensure => installed } }
-  if ! defined(Package[$libreadline_pkg])  { package { $libreadline_pkg:  ensure => installed } }
-
-
 }
