@@ -50,14 +50,14 @@ define rvm::define::gem(
 
   ## Begin Logic
   if $ensure == 'present' {
-    exec { "rvm-gem-install-${gem_name}-${gem_version}-${ruby_version}":
+    exec { "rvm-gem-install-${gemset}-${gem_name}-${gem_version}-${ruby_version}":
       command => $gem['install'],
       unless  => $gem['lookup'],
       require => [Class['rvm'], Exec[$rvm_depency]],
     }
   }
   elsif $ensure == 'absent' {
-    exec { "rvm-gem-uninstall-${gem_name}-${gem_version}-${ruby_version}":
+    exec { "rvm-gem-uninstall-${gemset}-${gem_name}-${gem_version}-${ruby_version}":
       command => $gem['uninstall'],
       onlyif  => $gem['lookup'],
       require => [Class['rvm'], Exec[$rvm_depency]],
