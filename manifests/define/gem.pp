@@ -34,14 +34,14 @@ define rvm::define::gem(
   # Setup proper install/uninstall commands based on gem version.
   if $gem_version == '' {
     $gem = {
-      'install'   => "rvm ${rubyset_version} do gem install ${gem_name} ${prerelease} --no-ri --no-rdoc",
+      'install'   => "rvm ${rubyset_version} do gem install ${gem_name} ${prerelease} --no-document",
       'uninstall' => "rvm ${rubyset_version} do gem uninstall ${gem_name}",
       'lookup'    => "rvm ${rubyset_version} do gem list | grep ${gem_name}",
     }
   }
   else {
     $gem = {
-      'install'   => "rvm ${rubyset_version} do gem install ${gem_name} ${prerelease} -v ${gem_version} --no-ri --no-rdoc",
+      'install'   => "rvm ${rubyset_version} do gem install ${gem_name} ${prerelease} -v ${gem_version} --no-document",
       'uninstall' => "rvm ${rubyset_version} do gem uninstall ${gem_name} -v ${gem_version}",
       'lookup'    => "rvm ${rubyset_version} do gem list | grep ${gem_name} | grep ${gem_version}",
     }
