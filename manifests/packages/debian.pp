@@ -3,7 +3,6 @@ class rvm::packages::debian {
     'build-essential',
     'curl',
     'gnupg',
-    'bash',
     'gawk',
     'sed',
     'grep',
