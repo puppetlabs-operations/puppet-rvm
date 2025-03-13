@@ -10,7 +10,7 @@ class rvm::packages::debian {
     'bzip2',
     'zlib1g-dev',
     'libssl-dev',
-    'libreadline-gplv2-dev',
+    'libreadline-dev',
   ]
 
   ensure_packages($packages, {'ensure' => 'installed'})
